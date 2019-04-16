@@ -1,6 +1,7 @@
 var express = require('express');    //Express Web Server 
 var path = require('path');     //used for file path
 var bodyParser = require('body-parser')
+var fs = require('fs')
 
 var port = process.env.PORT || 443;
 
@@ -11,8 +12,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 
 app.get("/apple-app-site-association", function (req, res) {
-    res.setHeader("Content-Type", "application/json")
-    res.sendFile("public/apple-app-site-association")
+    let data = fs.readFileSync("public/apple-app-site-association");
+
+    res.setHeader("Content-Type", "application/json");
+    res.send(data);
 });
 
 var server = app.listen(port, function() {
