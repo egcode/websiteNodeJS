@@ -6,18 +6,16 @@ var fs = require('fs')
 var port = process.env.PORT || 443;
 
 var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
  
-// parse application/json
-app.use(bodyParser.json())
 
 app.get("/apple-app-site-association", function (req, res) {
     // let data = fs.readFileSync("public/apple-app-site-association");
 
-    res.setHeader("Content-Type", "application/json");
+    
 
     let rawdata = fs.readFileSync("public/apple-app-site-association");
     let student = JSON.parse(rawdata);
+    res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify(student));
 
 });
