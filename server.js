@@ -16,7 +16,7 @@ app.get("/apple-app-site-association", function (req, res) {
 
     res.setHeader("Content-Type", "application/json");
 
-    let rawdata = fs.readFileSync(".well-known/apple-app-site-association");
+    let rawdata = fs.readFileSync("apple-app-site-association");
     let student = JSON.parse(rawdata);
     res.end(JSON.stringify(student));
 
