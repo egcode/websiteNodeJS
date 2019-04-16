@@ -10,6 +10,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // parse application/json
 app.use(bodyParser.json())
 
+app.get("/apple-app-site-association", function (req, res) {
+    res.setHeader("Content-Type", "application/json")
+    res.sendFile("public/apple-app-site-association")
+});
+
 var server = app.listen(port, function() {
     console.log('Listening on port %d', server.address().port);
 });
