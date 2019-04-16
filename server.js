@@ -12,10 +12,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 
 app.get("/apple-app-site-association", function (req, res) {
-    let data = fs.readFileSync("public/apple-app-site-association");
+    // let data = fs.readFileSync("public/apple-app-site-association");
 
     res.setHeader("Content-Type", "application/json");
-    res.send(data);
+
+    let rawdata = fs.readFileSync("public/apple-app-site-association");
+    let student = JSON.parse(rawdata);
+    res.end(JSON.stringify(student));
+
 });
 
 var server = app.listen(port, function() {
