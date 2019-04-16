@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Photocatch</title>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link href="css/indexStyles.css" rel="stylesheet">
+    <link href="css/photocatchStyles.css" rel="stylesheet">
+
+    <style>
+	</style>
+	
+</head>
+  
+  <body>
+  
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+    </div>
+	  
+  
+  <!-- ///////////////First Container://////////////////-->
+  
+    <div class="container contentContainer" id="topContainer">
+    	<div class="row">
+    	 	<div class="col-md-6 col-md-offset-3" id="topRow">
+    			<h1 class="marginTop">Photo Catch</h1>
+				<p class="lead">Record any footage or take from your gallery and simply tap to extract your favorite pictures.</p>
+				<p class="center">
+					<a href="https://itunes.apple.com/us/app/photo-catch-photos-from-video/id997597907?mt=8">
+						<img src="img/appstore.png" class="appstoreImage">
+					</a>  
+				</p>
+			</div>
+	
+    	</div>
+	</div>
+	
+<!-- ///////////////Slide Show Container://////////////////-->
+  
+	<!-- <div class="mySlides fade"> -->
+		<div class="row marginTop">
+			<div class="column">
+				<img src="img/photocatch/1.png" style="width:100%">
+			</div>
+			<div class="column">
+				<img src="img/photocatch/2.png" style="width:100%">
+			</div>
+			<div class="column">
+					<img src="img/photocatch/3.png" style="width:100%">
+			</div>
+		</div>
+	<!-- </div> -->
+
+
+<br>
+
+
+    <script>
+
+// Import Navigation Bar
+$.get("/nav.html", function(data){
+    $("#nav-placeholder").replaceWith(data);
+});
+
+</script>	
+    
+  </body>
+</html>

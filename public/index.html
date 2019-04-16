@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>EG website</title>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <link href="css/indexStyles.css" rel="stylesheet">
+
+  <style>
+
+  </style>
+</head>
+<body>
+
+<div id="container">
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+      
+    <video autoplay muted loop id="myVideo">
+            <source src="./img/video1.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+    </video>
+
+    <!-- First Container -->
+    <div class="container-fluid bg-1 text-center">          
+      <h2 class="margin"><strong></strong>Arcules</strong> Arcules</h2>
+      <h4 id="description" >Arcules Arcules
+        Arcules Arcules Arcules <a href="https://www.arcules.com">Arcules</a></h4>
+    </div>
+
+    <!-- Second Container (Grid) -->
+    <div class="container-fluid bg-2 text-center">
+      <div class="row">
+
+          <div class="col-sm-1">
+          </div>
+      
+          <div class="col-sm-5">
+              <h3 class="margin">Arcules</h3>
+              <p>ArculesArculesArculesArculesArculesArculesArcules<br>Arcules ArculesArculesArculesArculesArculesArculesArculesArculesArculesArcules<br>ArculesArculesArculesArcules<br>ArculesArculesArculesArculesArculesArculesArcules</p>
+          </div>
+
+          <div class="col-sm-5">
+              <h3 class="margin">Arcules</h3>
+          </div>
+            
+      </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// Import Navigation Bar
+$.get("/nav.html", function(data){
+    $("#nav-placeholder").replaceWith(data);
+});
+
+
+</script>
+		
+</body>
+</html>

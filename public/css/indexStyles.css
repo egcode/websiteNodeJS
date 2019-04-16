@@ -1,0 +1,98 @@
+body {
+
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+#container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+/* Remove video from devices, since it's not cropping */
+@media screen and (max-width: 768px) {
+    #myVideo {display: none;}    
+}
+
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+.bg-1 { 
+   /* background-color: #1abc9c;   Green */
+   /* background-color: #ffffff;  */
+   background-color: rgba(0, 0, 0, 0.0);
+   color: #ffffff;
+}
+.bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+}
+.bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+}
+.bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+}
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+
+/* shadow */
+h2 {
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#description {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+h3 {
+    line-height: 1.8;
+    color: #a0a0a0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.circleShadow
+{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+	-o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+	border-radius:50px;
+}
+
+.marginSide {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Video */
+#myVideo {
+    position: absolute;
+    top: 80px; /* navbar height */
+    left: 0;
+    /* right: 0;
+    bottom: 0; */
+    opacity: 0.05;
+    z-index: -1;
+    width: 100%; 
+    height: auto;
+    min-width: 1200px; /* restrict scaling less than this amount */
+}

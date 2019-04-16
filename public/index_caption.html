@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <title>Image Caption.</title>
+  </head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+
+  
+  <link href="css/indexStyles.css" rel="stylesheet">
+  <link href="css/captionsStyles.css" rel="stylesheet">
+
+<style>
+
+</style>
+
+
+ <body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+    
+      
+    <a href="https://github.com/egcode/image-caption" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="./img/fork_me.png"></a>
+    <div style="height: 50px; margin-top: 20px;  margin-bottom: 20px;">
+        <p style="color:black;" class="lead center">Upload png or jpg image and check how AI will describe it</p>
+    </div>
+
+    <div class="container contentContainer" id="topContainer">
+    
+        <div id="formDiv" class="center">
+            <form id="uploadForm" class="marginTop"
+                enctype="multipart/form-data"
+                action="/upload"
+                method="post">
+                    
+                <span class="btn btn-primary btn-file">
+                    <input id="uploadImage" type="file" name="userPhoto" accept="image/x-png, image/jpeg"/>
+                    <input id="submitButton" type="submit" class="btn btn-success btn-lg marginTop" value="Upload Image" name="submit">
+                </span>
+            </form>
+        </div>   
+
+        <div class="center" id="captionDiv">
+                <button class="btn btn-success btn-lg marginTop" type="button" id="caption" onclick="getImageCaptionFromServer()">Get Image Caption</button>        
+        </div>   
+                
+        <div class="messages center">
+                <!-- Image Caption goes here  -->
+        </div> 
+
+
+        <div class="marginTop center" id="imageDiv" >
+            <img id="imageView"  src="" class="img-thumbnail" alt="Cinque Terre" width="500" height="500">
+        </div> 
+
+        <div class="center" id="refreshButtonDiv">
+                <button class="btn btn-success btn-lg marginTop" type="button" id="restart" onclick="refreshClick()">Try another one</button>        
+        </div>  
+    </div>
+
+  </body>
+  <script type="text/javascript" src="/js/app_caption.js"></script>
+  <script src="/js/spin.js"></script>
+  <script src="/js/jquery-3.1.0.min.js"></script>
+  <script src="/js/jquery.form.min.js"></script>
+  <script>
+
+    // Import Navigation Bar
+    $.get("/nav.html", function(data){
+        $("#nav-placeholder").replaceWith(data);
+    });
+
+    // Spinner
+    var opts = {
+        lines: 18, // The number of lines to draw
+        length: 0, // The length of each line
+        width: 17, // The line thickness
+        radius: 46, // The radius of the inner circle
+        scale: 1.8, // Scales overall size of the spinner
+        corners: 1, // Corner roundness (0..1)
+        color: '#ffffff', // CSS color or array of colors
+        fadeColor: 'transparent', // CSS color or array of colors
+        speed: 2.2, // Rounds per second
+        rotate: 0, // The rotation offset
+        animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        className: 'spinner', // The CSS class to assign to the spinner
+        top: '50%', // Top position relative to parent
+        left: '50%', // Left position relative to parent
+        shadow: '0 0 1px transparent', // Box-shadow for the lines
+        position: 'absolute' // Element positioning
+    };
+    // var target = document.getElementById('topContainer');
+    // var spinner = new Spinner(opts).spin(target);
+    // var spinner = new Spinner(opts);
+
+
+
+const ENUM_INITIAL_STATE  = 0,
+    ENUM_PREPROCESS_STATE = 1,
+    ENUM_COMPLETED_STATE  = 2;
+
+// Initial UI state
+uiState(ENUM_INITIAL_STATE);
+
+// UPLOAD
+$(document).ready(function() {
+
+    $('#submitButton').bind("click",function() { 
+        var imgVal = $('#uploadImage').val(); 
+        if(imgVal=='')  { 
+            alert("empty input file"); 
+            return false; 
+        } else {
+            uploadImage();
+        }
+    }); 
+});
+
+
+  </script>
+  
+</html>
+

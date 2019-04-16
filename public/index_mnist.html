@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <title>MNIST Predict</title>
+
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link href="css/indexStyles.css" rel="stylesheet">
+    <link href="css/mnistStyles.css" rel="stylesheet">
+
+    <style>
+  
+    </style>
+  
+
+  </head>
+
+
+  <body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+      
+    
+    <a href="https://github.com/egcode/MNIST-Tensorlow-Node" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="./img/fork_me.png"></a>
+    <div style="height: 50px; margin-top: 20px;  margin-bottom: 20px;">
+        <p style="color:black;" class="lead center">Draw a digit in a black area and hit "Guess Digit" button</p>
+    </div>
+
+    <div class="center top" id="topContainer">
+        
+        <button class="btn btn-primary buttonsMarginBottom" id="guess-digit">Guess Digit</button>
+        <button class="btn btn-info buttonsMargin buttonsMarginBottom" id="clear">Clear</button> 
+        <div class="wrapper">
+              <canvas id="signature-pad" class="signature-pad"></canvas>
+        </div>
+    </div>
+
+    <div class = "separatorDiv">
+    </div>
+
+    <div id="CNNContainer" >
+
+        <div class="marginTop center" id="layer1" >
+        </div> 
+        <div class = "separatorDiv">
+        </div>
+    
+        <div class="marginTop center" id="layer2" >
+        </div> 
+        
+        <div class = "separatorDiv">
+        </div>
+      
+        <div class="marginTop center" id="layer3" >
+        </div> 
+    
+        <div class = "separatorDiv">
+        </div>
+
+        <div class="grid-container-dense marginTop center" id="layerDense" >
+        </div> 
+
+        <div class = "separatorDiv">
+        </div>
+        
+        <div class="grid-container-softmax marginTop center" id="layerSoftmax" >
+        </div> 
+
+        <div class = "separatorDiv">
+        </div>
+
+        <div class="marginTop center" id="resultDiv" >
+            <div id="resultNeuron" class="grid-item-style">
+              0
+              </div>  
+        </div> 
+
+        <div class = "separatorDiv" id="bottomDiv">
+        </div>
+  
+    </div>
+    
+  </body>
+  <script type="text/javascript" src="/js/app_mnist.js"></script>
+  <script src="/js/signature_pad.min.js"></script>
+  <script src="/js/spin.js"></script>
+  <!-- <script src="/js/jquery-3.1.0.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+  <script src="/js/jquery.form.min.js"></script>
+  <script>
+
+// Import Navigation Bar
+$.get("/nav.html", function(data){
+    $("#nav-placeholder").replaceWith(data);
+});
+
+
+var canvas = document.getElementById('signature-pad');
+function resizeCanvas() {
+    // When zoomed out to less than 100%, for some very strange reason,
+    // some browsers report devicePixelRatio as less than 1
+    // and only part of the canvas is cleared then.
+    var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+    canvas.getContext("2d").scale(ratio, ratio);
+
+    // Signature color on resize
+    $('#signature-pad').css({
+       'backgroundColor': 'rgb(0, 0, 0)',
+        'penColor': 'rgb(255,255,255)'
+    });
+
+    updateCNNLinesPosition();
+    updateDenseLinesPosition();
+    updateSoftmaxLinesPosition();
+    updateReultLinesPosition();
+}
+
+window.onresize = resizeCanvas;
+resizeCanvas();
+
+var signaturePad = new SignaturePad(canvas, {
+  backgroundColor: 'rgb(0, 0, 0)',
+  penColor: 'rgb(255,255,255)',
+  minWidth: 10,
+  maxWidth: 15
+});
+
+document.getElementById('guess-digit').addEventListener('click', function () {
+  if (signaturePad.isEmpty()) {
+    return alert("Please provide a signature first.");
+  }
+  var imageBase64 = signaturePad.toDataURL('image/jpeg',0.5);
+  getMnistPredictionFromServer(imageBase64);
+
+});
+
+document.getElementById('clear').addEventListener('click', function () {
+  signaturePad.clear();
+  initColors();
+});
+
+// Spinner
+var opts = {
+    lines: 18, // The number of lines to draw
+    length: 0, // The length of each line
+    width: 17, // The line thickness
+    radius: 46, // The radius of the inner circle
+    scale: 1.8, // Scales overall size of the spinner
+    corners: 1, // Corner roundness (0..1)
+    color: '#ffffff', // CSS color or array of colors
+    fadeColor: 'transparent', // CSS color or array of colors
+    speed: 2.2, // Rounds per second
+    rotate: 0, // The rotation offset
+    animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+    direction: 1, // 1: clockwise, -1: counterclockwise
+    zIndex: 2e9, // The z-index (defaults to 2000000000)
+    className: 'spinner', // The CSS class to assign to the spinner
+    top: '50%', // Top position relative to parent
+    left: '50%', // Left position relative to parent
+    shadow: '0 0 1px transparent', // Box-shadow for the lines
+    position: 'absolute' // Element positioning
+};
+
+const ENUM_INITIAL_STATE  = 0,
+    ENUM_PROCESS_STATE = 1,
+    ENUM_COMPLETED_STATE  = 2;
+
+// Initial UI state
+uiState(ENUM_INITIAL_STATE);
+
+// Init All NN Layers
+initAllNNLayers();
+
+  </script>
+  
+</html>
+

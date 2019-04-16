@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Texter</title>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link href="css/indexStyles.css" rel="stylesheet">
+    <link href="css/texterStyles.css" rel="stylesheet">
+
+    <style>
+	</style>
+	
+</head>
+  
+  <body>
+  
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+    </div>
+	  
+	<a href="https://github.com/egcode/Texter" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="./img/fork_me.png"></a>
+
+  
+  <!-- ///////////////First Container://////////////////-->
+  
+    <div class="container contentContainer" id="topContainer">
+    	<div class="row">
+    	 	<div class="col-md-6 col-md-offset-3" id="topRow">
+    			<h1 class="marginTop">Texter</h1>
+				<p class="lead">Simple light weight instant messenger.</p>
+				<p class="center">
+					<a href="https://itunes.apple.com/us/app/texter-instant-messenger/id1080900635?mt=8">
+						<img src="img/appstore.png" class="appstoreImage">
+					</a>  
+				</p>
+			</div>
+	
+    	</div>
+	</div>
+	
+<!-- ///////////////Slide Show Container://////////////////-->
+<div class="slideshow-container marginTop">
+  
+	<div class="mySlides fade">
+		<div class="row">
+			<div class="column">
+				<img src="img/texter/shot2.png" style="width:100%">
+			</div>
+			<div class="column">
+				<img src="img/texter/shot5.png" style="width:100%">
+			</div>
+			<div class="column">
+					<img src="img/texter/shot1.png" style="width:100%">
+			</div>
+		</div>
+	</div>
+
+	<div class="mySlides fade">
+		<div class="row">
+			<div class="column">
+				<img src="img/texter/shot4.png" style="width:100%">
+			</div>
+			<div class="column">
+				<img src="img/texter/shot6.png" style="width:100%">
+			</div>
+			<div class="column">
+					<img src="img/texter/shot5.png" style="width:100%">
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
+  <!-- ///////////////Footer Container://////////////////-->
+ 	 <div class="container contentContainerHalf">
+    	<div class="row center">
+    	</div>
+    	<div class="row marginBottom">
+			<div class="col-md-2 marginTop">
+				<h2><span class="glyphicon glyphicon-time"></span></h2>
+				<p>Realtime socket based messaging.</p>
+			</div>
+
+			<div class="col-md-2 marginTop">
+				<h2><span class="glyphicon glyphicon-user"></span></h2>
+				<p>Online/Offline user tracking</p>
+			</div>
+			
+			<div class="col-md-2 marginTop">
+				<h2><span class="glyphicon glyphicon-stats"></span></h2>
+				<p>Realtime message status tracking</p>
+			</div>
+			<div class="col-md-2 marginTop">
+				<h2><span class="glyphicon glyphicon-envelope"></span></h2>
+				<p>Push notifications</p>
+			</div>
+
+			<div class="col-md-2 marginTop">
+				<h2><span class="glyphicon glyphicon-log-in"></span></h2>
+				<p>Facebook Login</p>
+			</div>
+			
+			<div class="col-md-2 marginTop">
+				<h2><span class="glyphicon glyphicon-log-in"></span></h2>
+				<p>Google Login</p>
+			</div>
+
+    	</div>
+    </div> 
+
+    <script>
+
+// Import Navigation Bar
+$.get("/nav.html", function(data){
+    $("#nav-placeholder").replaceWith(data);
+});
+
+
+// Slide Show
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+    </script>	
+    
+  </body>
+</html>
