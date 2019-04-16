@@ -14,8 +14,8 @@ app.use(bodyParser.json())
 app.get("/apple-app-site-association", function (req, res) {
     // let data = fs.readFileSync("public/apple-app-site-association");
 
-    // res.setHeader("Content-Type", "application/json");
-    res.setHeader("Content-Type", "application/pkcs7-mime");
+    res.setHeader("Content-Type", "application/json");
+    // res.setHeader("Content-Type", "application/pkcs7-mime");
 
     let rawdata = fs.readFileSync("apple-app-site-association");
     let student = JSON.parse(rawdata);
