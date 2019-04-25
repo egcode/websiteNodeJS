@@ -1,2 +1,2 @@
-# MNIST Eugene Personal Website
+# AAABBBCCC Personal Website
 
